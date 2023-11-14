@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/math_converter.css" />
+    <title>Number facts</title>
+  </head>
+  <body>
+    <h1><%= number %></h1>
+    <ul>
+      <li>
+        <%= number %> miles is <%= moon_distance %>% of the way to the moon
+      </li>
+      <li><%= number %> fluid ounces is <%= floz_ml %> milliliters</li>
+      <li><%= number %> gallons is <%= gal_lit %> liters</li>
+      <li><%= number %> mph is <%= mph_kph %> kph</li>
+      <li><%= number %> has the factors: <%= divisors.join(', ') %></li>
+      <li><%= number %> <%= is_prime ? "is" : "is not" %> prime</li>
+    </ul>
+  </body>
+</html>

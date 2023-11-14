@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        padding: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>GET form</h3>
+    <form action="get_results" method="GET">
+      <ul>
+        <li>
+          What is your name?
+          <input type="text" name="get_name" />
+        </li>
+        <li>
+          What is your age?
+          <input type="number" name="get_age" />
+        </li>
+        <input type="submit" />
+      </ul>
+    </form>
+    <h3>POST form</h3>
+    <form action="post_results" method="POST">
+      <ul>
+        <li>
+          What is your name?
+          <input type="text" name="post_name" />
+        </li>
+        <li>
+          What is your age?
+          <input type="number" name="post_age" />
+        </li>
+        <input type="submit" />
+      </ul>
+    </form>
+  </body>
+</html>
