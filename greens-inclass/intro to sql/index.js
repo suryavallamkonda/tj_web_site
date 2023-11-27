@@ -1,24 +1,3 @@
-// const sql3 = require("sqlite3").verbose();
-// const db = new sql3.Database("database.db");
-
-// function sqlPromise(query) {
-//   return new Promise((resolve, reject) => {
-//     db.all(query, (err, rows) => {
-//       if (err) reject(err);
-//       resolve(rows);
-//     });
-//   });
-// }
-
-// async function main() {
-//   let query = "SELECT c_name, c_strength FROM characters ORDER BY c_strength";
-//   let results = await sqlPromise(query);
-//   console.log(results);
-//   db.close();
-// }
-
-// main();
-
 const express = require("express");
 const app = express();
 

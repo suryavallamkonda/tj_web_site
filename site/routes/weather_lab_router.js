@@ -1,6 +1,5 @@
 const express = require("express");
 let https = require("https");
-const { type } = require("os");
 
 const weather_lab_router = express.Router();
 

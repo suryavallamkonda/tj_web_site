@@ -7,8 +7,10 @@ app.use(static_files_router);
 
 let math_converter = require("./routes/math_converter_router.js");
 let weather = require("./routes/weather_lab_router.js");
+let sql = require("./routes/mysql_router.js");
 app.use(math_converter);
 app.use(weather);
+app.use(sql);
 
 app.get("/", (req, res) => {
   res.render("home");
