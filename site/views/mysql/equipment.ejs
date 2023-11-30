@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/mysql.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>Equipment</h1>
+      <ul>
+        <% for(let e of equipment){ %>
+        <fieldset style="display: flex; flex-direction: column">
+          <legend><%= e['item'] %></legend>
+          <span>Wit: <%= e['wit'] %></span>
+          <span>Strength: <%= e['strength'] %></span>
+          <span>Attack: <%= e['attack'] %></span>
+          <span>Defense: <%= e['defense'] %></span>
+          <span>Magic: <%= e['magic'] %></span>
+          <form action="/sql/equipment/remove_equipment">
+            <input type="hidden" name="item" value=<%= e['item'] %> />
+            <button type="submit">Remove Item</button>
+          </form>
+        </fieldset>
+        <% } %>
+      </ul>
+      <form action="/sql/equipment/add_equipment" id="equip_form">
+        <h2>Create new equipment</h2>
+        <label for="item_name">Item Name: </label>
+        <input type="text" id="item_name" name="item_name" /><br />
+
+        <label for="item_name">Wit Modifier: </label>
+        <input type="number" id="wit_modifier" name="wit_modifier" /><br />
+
+        <label for="item_name">Strength Modifier: </label>
+        <input
+          type="number"
+          id="strength_modifier"
+          name="strength_modifier"
+        /><br />
+
+        <label for="item_name">Attack Modifier: </label>
+        <input
+          type="number"
+          id="attack_modifier"
+          name="attack_modifier"
+        /><br />
+
+        <label for="item_name">Defense Modifier: </label>
+        <input
+          type="number"
+          id="defense_modifier"
+          name="defense_modifier"
+        /><br />
+
+        <label for="item_name">Magic Modifier: </label>
+        <input type="number" id="magic_modifier" name="magic_modifier" /><br />
+
+        <button type="submit">Add item</button>
+      </form>
+    </div>
+  </body>
+</html>

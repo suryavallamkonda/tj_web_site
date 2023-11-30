@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <style>
+      * {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        margin: 0;
+      }
+      body {
+        width: 100vw;
+      }
+      h1 {
+        text-align: center;
+      }
+      a {
+        text-align: center;
+      }
+
+      ul,
+      form {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: fit-content;
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
+        padding: 10px;
+      }
+
+      input {
+        width: fit-content;
+        height: 10px;
+        padding: 10px;
+      }
+
+      #root {
+        display: flex;
+        background-color: red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><%= stats[0].c_name %></h1>
+    <div id="root">
+      <ul>
+        <li>WIT: <strong><%= stats[0]['c_wit'] %></strong></li>
+        <li>STRENGTH: <strong><%= stats[0]['c_strength'] %></strong></li>
+        <li>ATTACK: <strong><%= stats[0]['c_attack'] %></strong></li>
+        <li>DEFENSE: <strong><%= stats[0]['c_defense'] %></strong></li>
+        <li>MAGIC: <strong><%= stats[0]['c_magic'] %></strong></li>
+        <br />
+      </ul>
+      <form action="/update">
+        <ul>
+          <li>
+            <label for="wit_u">Update wit: </label>
+            <input type="number" id="wit_u" />
+          </li>
+          <li>
+            <label for="strength_u">Update strength: </label>
+            <input type="number" id="strength_u" />
+          </li>
+          <li>
+            <label for="attack_u">Update attack: </label>
+            <input type="number" id="attack_u" />
+          </li>
+          <li>
+            <label for="defense_u">Update defense: </label>
+            <input type="number" id="defense_u" />
+          </li>
+          <li>
+            <label for="magic_u">Update magic: </label>
+            <input type="number" id="magic_u" />
+          </li>
+        </ul>
+        <input type="submit" />
+      </form>
+      <br />
+    </div>
+    <a href="/">BACK</a>
+  </body>
+</html>
