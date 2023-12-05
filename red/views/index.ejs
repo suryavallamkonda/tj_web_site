@@ -1,0 +1,69 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <h1>Pokedex</h1>
+    <% for(let pokemon of results) { %>
+    <details>
+      <summary><strong>Name:</strong> <%= pokemon.name %></summary>
+      <ul>
+        <li><strong>Type 1:</strong> <%= pokemon.type1 %></li>
+        <li><strong>Type 2:</strong> <%= pokemon.type2 || 'N/A' %></li>
+        <li><strong>Base HP:</strong> <%= pokemon.base_hp %></li>
+        <li><strong>Base Attack:</strong> <%= pokemon.base_attack %></li>
+        <li><strong>Base Defense:</strong> <%= pokemon.base_defense %></li>
+        <li><strong>Base Speed:</strong> <%= pokemon.base_speed %></li>
+        <li><strong>Move 1:</strong> <%= pokemon.move1 %></li>
+        <li><strong>Move 2:</strong> <%= pokemon.move2 || 'N/A' %></li>
+        <li><strong>Move 3:</strong> <%= pokemon.move3 || 'N/A' %></li>
+        <li><strong>Move 4:</strong> <%= pokemon.move4 || 'N/A' %></li>
+      </ul>
+    </details>
+    <% } %>
+
+    <form action="/add_pokemon" method="post">
+        <h3>Add Pokemon</h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="type1">Type 1:</label>
+        <input type="text" id="type1" name="type1" required>
+
+        <label for="type2">Type 2:</label>
+        <input type="text" id="type2" name="type2">
+
+        <label for="base_hp">Base HP:</label>
+        <input type="number" id="base_hp" name="base_hp" required>
+
+        <label for="base_attack">Base Attack:</label>
+        <input type="number" id="base_attack" name="base_attack" required>
+
+        <label for="base_defense">Base Defense:</label>
+        <input type="number" id="base_defense" name="base_defense" required>
+
+        <label for="base_speed">Base Speed:</label>
+        <input type="number" id="base_speed" name="base_speed" required>
+
+        <label for="move1">Move 1:</label>
+        <input type="number" id="move1" name="move1" required>
+
+        <label for="move2">Move 2:</label>
+        <input type="number" id="move2" name="move2">
+
+        <label for="move3">Move 3:</label>
+        <input type="number" id="move3" name="move3">
+
+        <label for="move4">Move 4:</label>
+        <input type="number" id="move4" name="move4">
+
+        <button type="submit">Add Pokemon</button>
+    </form>
+  </body>
+</html>
