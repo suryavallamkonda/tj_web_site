@@ -1,13 +1,28 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
 }
 
-#root {
-  background-color: red;
+h1 {
+  margin: 1rem;
 }
 
-#equip_form {
+ul {
+  list-style-type: none;
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  align-items: center;
+  margin: 1rem;
+}
+
+input {
+  width: fit-content;
 }

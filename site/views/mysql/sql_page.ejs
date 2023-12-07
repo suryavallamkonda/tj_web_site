@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/mysql.css" />
+    <title>mysql</title>
   </head>
   <body>
     <h1>HEROS</h1>
         <ul>
             <% for(let c of results){ %>
-                <li><a href= <%= `sql/characters/${c['c_name']}` %>><%= c['c_name'] %></a></li>
+                <li><a href= <%= `/sql/heros/${c['c_id']}` %>><%= c['c_name'] %></a></li>
             <% } %>
         </ul>
+    <h2><a href="/sql/equipment">Equipment</a></h2>
+    <h2><a href="/sql/quests">Quests</a></h2>
   </body>
 </html>

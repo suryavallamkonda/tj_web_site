@@ -2,8 +2,9 @@ const express = require("express");
 app = express();
 
 app.set("view engine", "ejs");
-const static_files_router = express.static("static");
-app.use(static_files_router);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("static"));
+app.use(express.json());
 
 let math_converter = require("./routes/math_converter_router.js");
 let weather = require("./routes/weather_lab_router.js");
