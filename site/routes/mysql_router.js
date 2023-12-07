@@ -60,7 +60,7 @@ router.get("/sql/equipment", async (req, res) => {
   res.render("mysql/equipment", out);
 });
 
-router.get("/sql/equipment/add_equipment", async (req, res) => {
+router.post("/sql/equipment/add_equipment", async (req, res) => {
   let {
     item_name,
     lore,
@@ -69,7 +69,7 @@ router.get("/sql/equipment/add_equipment", async (req, res) => {
     strength_modifier,
     magic_modifier,
     wit_modifier,
-  } = req.query;
+  } = req.body;
   let sqlquery = `
               INSERT INTO equipment (id, item, lore, hero, wit, strength, attack, defense, magic) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -91,10 +91,14 @@ router.get("/sql/equipment/add_equipment", async (req, res) => {
   res.redirect("/sql/equipment");
 });
 
-router.get("/sql/equipment/remove_equipment", async (req, res) => {
-  let { item } = req.query;
-  let sqlquery = "DELETE FROM equipment WHERE item = ?";
-  await sqlPromise(sqlquery, [item]);
+router.post("/sql/equipment/remove_equipment", async (req, res) => {
+  let { equipment_id } = req.body;
+  if (equipment_id == 10000) {
+    console.error("cannot delete this item");
+  } else {
+    let sqlquery = "DELETE FROM equipment WHERE id = ?";
+    await sqlPromise(sqlquery, [equipment_id]);
+  }
   res.redirect("/sql/equipment");
 });
 
@@ -109,7 +113,7 @@ router.get("/sql/quests", async (req, res) => {
   res.render("mysql/quests", out);
 });
 
-router.get("/sql/quests/add_quest", async (req, res) => {
+router.post("/sql/quests/add_quest", async (req, res) => {
   let {
     name,
     description,
@@ -118,7 +122,7 @@ router.get("/sql/quests/add_quest", async (req, res) => {
     attack_req,
     defense_req,
     magic_req,
-  } = req.query;
+  } = req.body;
   let query = `
             INSERT INTO quests (id, name, description, hero, wit_req, strength_req, attack_req, defense_req, magic_req)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -139,11 +143,14 @@ router.get("/sql/quests/add_quest", async (req, res) => {
   res.redirect("/sql/quests");
 });
 
-router.get("/sql/quests/remove_quest", async (req, res) => {
-  let { quest_name } = req.query;
-  console.log(quest_name);
-  let query = "DELETE FROM quests WHERE name = ?";
-  await sqlPromise(query, [quest_name]);
+router.post("/sql/quests/remove_quest", async (req, res) => {
+  let { quest_id } = req.body;
+  if (quest_id == 9000) {
+    console.error("cannot delete this quest");
+  } else {
+    let query = "DELETE FROM quests WHERE id = ?";
+    await sqlPromise(query, [quest_name]);
+  }
   res.redirect("/sql/quests");
 });
 

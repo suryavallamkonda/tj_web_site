@@ -24,8 +24,8 @@
           <li>Defense Req: <%= q['defense_req'] %></li>
           <li>Magic Req: <%= q['magic_req'] %></li>
         </ul>
-        <form action="/sql/quests/remove_quest">
-          <input type="hidden" name="quest_name" value=<%= q['name'] %> />
+        <form action="/sql/quests/remove_quest" method="post">
+          <input type="hidden" name="quest_id" value=<%= q['id'] %> />
           <button type="submit">Remove Item</button>
         </form>
       </details>

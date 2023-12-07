@@ -24,8 +24,8 @@
           <li>Defense: <%= e['defense'] %></li>
           <li>Magic: <%= e['magic'] %></li>
         </ul>
-        <form action="/sql/equipment/remove_equipment">
-          <input type="hidden" name="item" value=<%= e['item'] %> />
+        <form action="/sql/equipment/remove_equipment" method="post">
+          <input type="hidden" name="equipment_id" value=<%= e['id'] %> />
           <button type="submit">Remove Item</button>
         </form>
       </details>
@@ -33,7 +33,7 @@
       <h3 style="margin-bottom: 0">Create Equipment</h3>
       <details style="margin-top: 0">
         <summary></summary>
-        <form action="/sql/equipment/add_equipment" id="equip_form">
+        <form action="/sql/equipment/add_equipment" method="post">
           <label for="item_name">Item Name: </label>
           <input type="text" id="item_name" name="item_name" /><br />
 
