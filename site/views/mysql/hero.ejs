@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/mysql.css" />
-    <!-- <style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/mysql.css" />
+  <!-- <style>
       * {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -49,30 +50,99 @@
         background-color: red;
       }
     </style> -->
-    <title>Heros</title>
-  </head>
-  <body>
-    <h1><%= stats['c_name'] %></h1>
-    <div id="root">
-      <ul>
-        <li>WIT: <strong><%= stats['c_wit'] %></strong></li>
-        <li>STRENGTH: <strong><%= stats['c_strength'] %></strong></li>
-        <li>ATTACK: <strong><%= stats['c_attack'] %></strong></li>
-        <li>DEFENSE: <strong><%= stats['c_defense'] %></strong></li>
-        <li>MAGIC: <strong><%= stats['c_magic'] %></strong></li>
-        <br />
-      </ul>
+  <title>Heros</title>
+</head>
 
-      <form action="/sql/heros/update_hero" method="POST">
-        <input type="text" name="hero_id" value="<%= stats['c_id'] %>" hidden />
-        <input type="number" name="wit_u" />
-        <input type="number" name="strength_u" />
-        <input type="number" name="attack_u" />
-        <input type="number" name="defense_u" />
-        <input type="number" name="magic_u" />
-        <input type="submit" />
+<body>
+  <h1>
+    <%= stats['c_name'] %>
+  </h1>
+  <div id="root">
+    <fieldset id="stats-display">
+      <li>WIT: <strong>
+          <%= stats['c_wit'] %>
+        </strong></li>
+      <li>STRENGTH: <strong>
+          <%= stats['c_strength'] %>
+        </strong></li>
+      <li>ATTACK: <strong>
+          <%= stats['c_attack'] %>
+        </strong></li>
+      <li>DEFENSE: <strong>
+          <%= stats['c_defense'] %>
+        </strong></li>
+      <li>MAGIC: <strong>
+          <%= stats['c_magic'] %>
+        </strong></li>
+    </fieldset>
+    <h2 style="padding: 10px">Equipment</h2>
+    <fieldset id="stats-display">
+      <legend>
+        <strong>
+          <%= equip['item'] %>
+        </strong>
+      </legend>
+      <i>
+        <%= equip['lore'] %>
+      </i>
+      <ul>
+        <li>Wit: <%= equip['wit'] %>
+        </li>
+        <li>Strength: <%= equip['strength'] %>
+        </li>
+        <li>Attack: <%= equip['attack'] %>
+        </li>
+        <li>Defense: <%= equip['defense'] %>
+        </li>
+        <li>Magic: <%= equip['magic'] %>
+        </li>
+      </ul>
+      <form action="/sql/equipment/remove_equipment" method="post">
+        <input type="hidden" name="equipment_id" value=<%=equip['id'] %> />
+        <button type="submit" class="remove-button">Remove Item</button>
       </form>
-    </div>
-    <a href="/sql">BACK</a>
-  </body>
+    </fieldset>
+
+
+
+    <h2 style="padding: 10px">Quests</h2>
+    <fieldset id="stats-display">
+      <legend>
+        <strong>
+          <%= quest['name'] %>
+        </strong>
+      </legend>
+      <i>
+        <%= quest['description'] %>
+      </i>
+      <ul>
+        <li>Wit Requirement: <%= quest['wit_req'] %>
+        </li>
+        <li>Strength Requirement: <%= quest['strength_req'] %>
+        </li>
+        <li>Attack Requirement: <%= quest['attack_req'] %>
+        </li>
+        <li>Defense Requirement: <%= quest['defense_req'] %>
+        </li>
+        <li>Magic Requirement: <%= quest['magic_req'] %>
+        </li>
+      </ul>
+      <form action=" /sql/quests/remove_quest" method="post">
+        <input type="hidden" name="quest_id" value=<%=quest['id'] %> />
+        <button type="submit" class="remove-button">Cancel Quest</button>
+      </form>
+    </fieldset>
+    <!-- <form action="/sql/heros/update_hero" method="POST">
+      <input type="text" name="hero_id" value="<%= stats['c_id'] %>" hidden />
+      <input type="number" name="wit_u" />
+      <input type="number" name="strength_u" />
+      <input type="number" name="attack_u" />
+      <input type="number" name="defense_u" />
+      <input type="number" name="magic_u" />
+      <input type="submit" />
+    </form> -->
+  </div>
+  <a href="/sql">BACK</a>
+</body>
+
 </html>

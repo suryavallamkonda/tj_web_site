@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
 }
@@ -18,11 +19,158 @@ ul {
 form {
   display: flex;
   flex-direction: column;
-  max-width: fit-content;
+  width: fit-content;
   align-items: center;
   margin: 1rem;
 }
 
-input {
+fieldset {
   width: fit-content;
+  padding: 1rem;
+}
+
+#root {
+  margin: 0;
+}
+
+#display-equipment {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#stats-display {
+  margin-left: 1rem;
+}
+
+details {
+  padding: 0.25rem;
+  background-color: #ffffff;
+  width: 25%;
+}
+summary {
+  background-color: #61bcf9;
+  color: black;
+  padding: 1rem;
+  margin: 0.25rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.remove-button {
+  appearance: button;
+  background-color: #d61818;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+.remove-button:after {
+  background-clip: padding-box;
+  background-color: #d61818;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+.remove-button:main,
+.remove-button:focus {
+  user-select: auto;
+}
+.remove-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+.remove-button:disabled {
+  cursor: auto;
+}
+.remove-button:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+.assign-button {
+  appearance: button;
+  background-color: #1ed618;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+.assign-button:after {
+  background-clip: padding-box;
+  background-color: #1ed618;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+.assign-button:main,
+.assign-button:focus {
+  user-select: auto;
+}
+.assign-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+.assign-button:disabled {
+  cursor: auto;
+}
+.assign-button:active {
+  border-width: 4px 0 0;
+  background: none;
 }

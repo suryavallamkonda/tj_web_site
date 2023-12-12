@@ -1,63 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/mysql.css" />
-    <title>Quests</title>
-  </head>
-  <body>
-    <div id="root">
-      <h1>Quests</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/mysql.css" />
+  <title>Quests</title>
+</head>
+
+<body>
+  <div id="root">
+    <h1>Quests</h1>
+
+    <div id="display-equipment">
+
       <% for(let q of quests) { %>
-      <details>
-        <summary>
-          <strong><%= q['name'] %> ::</strong>
-          <span><%= q['hero'] %></span>
-        </summary>
-        <ul>
-          <strong><%= q['description'] %></strong>
-          <li>Wit Req: <%= q['wit_req'] %></li>
-          <li>Strength Req: <%= q['strength_req'] %></li>
-          <li>Attack Req: <%= q['attack_req'] %></li>
-          <li>Defense Req: <%= q['defense_req'] %></li>
-          <li>Magic Req: <%= q['magic_req'] %></li>
-        </ul>
-        <form action="/sql/quests/remove_quest" method="post">
-          <input type="hidden" name="quest_id" value=<%= q['id'] %> />
-          <button type="submit">Remove Item</button>
-        </form>
-      </details>
-      <% } %>
-      <h3 style="margin-bottom: 0">Create a quest</h3>
-      <details style="margin-top: 0">
-        <summary></summary>
-        <form action="/sql/quests/add_quest" id="quest_form">
-          <label for="name">Name: </label>
-          <input type="text" id="name" name="name" /><br />
+        <details>
+          <summary>
+            <strong>
+              <%= q['name'] %>
+            </strong>
+          </summary>
+          <fieldset id="stats-display">
+            <ul>
+              <strong>
+                <%= q['description'] %>
+              </strong>
+              <li>Wit Req: <%= q['wit_req'] %>
+              </li>
+              <li>Strength Req: <%= q['strength_req'] %>
+              </li>
+              <li>Attack Req: <%= q['attack_req'] %>
+              </li>
+              <li>Defense Req: <%= q['defense_req'] %>
+              </li>
+              <li>Magic Req: <%= q['magic_req'] %>
+              </li>
+            </ul>
+          </fieldset>
 
-          <label for="description">Description: </label>
-          <input type="text" id="description" name="description" /><br />
+          <form action="/sql/quests/assign_quest" method="post">
+            <fieldset>
+              <legend>Assign a Quest to a Hero</legend>
+              <% for(let h of heros) { %>
+                <div>
+                  <input type="radio" checked id=<%=h.toString() %> name="hero_id" value=<%= h['c_id'] %> />
+                    <label for=<%=h.toString() %>><%= h['c_name'] %></label>
+                </div>
+                <% } %>
+                  <button type="submit" class="assign-button">Assign Quest</button>
+            </fieldset>
+            <input type="hidden" name="quest_id" value=<%=q['id'] %> />
+          </form>
 
-          <label for="wit_req">Wit Req: </label>
-          <input type="number" id="wit_req" name="wit_req" /><br />
-
-          <label for="strength_req">Strength Req: </label>
-          <input type="number" id="strength_req" name="strength_req" /><br />
-
-          <label for="attack_req">Attack Req: </label>
-          <input type="number" id="attack_req" name="attack_req" /><br />
-
-          <label for="defense_req">Defense Req: </label>
-          <input type="number" id="defense_req" name="defense_req" /><br />
-
-          <label for="magic_req">Magic Req: </label>
-          <input type="number" id="magic_req" name="magic_req" /><br />
-
-          <button type="submit">Create quest</button>
-        </form>
-      </details>
+          <!-- CANCEL QUEST -->
+          <form action=" /sql/quests/remove_quest" method="post">
+            <input type="hidden" name="quest_id" value=<%=q['id'] %> />
+            <button type="submit" class="remove-button">Cancel Quest</button>
+          </form>
+        </details>
+        <% } %>
     </div>
-  </body>
+
+
+
+
+    <h3>Create a quest</h3>
+    <form action="/sql/quests/add_quest" id="quest_form" method="post">
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" /><br />
+
+      <label for="description">Description: </label>
+      <input type="text" id="description" name="description" /><br />
+
+      <label for="wit_req">Wit Req: </label>
+      <input type="number" id="wit_req" name="wit_req" /><br />
+
+      <label for="strength_req">Strength Req: </label>
+      <input type="number" id="strength_req" name="strength_req" /><br />
+
+      <label for="attack_req">Attack Req: </label>
+      <input type="number" id="attack_req" name="attack_req" /><br />
+
+      <label for="defense_req">Defense Req: </label>
+      <input type="number" id="defense_req" name="defense_req" /><br />
+
+      <label for="magic_req">Magic Req: </label>
+      <input type="number" id="magic_req" name="magic_req" /><br />
+
+      <button type="submit">Create quest</button>
+    </form>
+    <a href="/sql">BACK</a>
+  </div>
+</body>
+
 </html>

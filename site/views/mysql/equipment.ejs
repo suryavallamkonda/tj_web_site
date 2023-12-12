@@ -1,79 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/mysql.css" />
-    <title>Equipment</title>
-  </head>
-  <body>
-    <div id="root">
-      <h1>Equipment</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/mysql.css" />
+  <title>Equipment</title>
+</head>
+
+<body>
+  <div id="root">
+    <h1>Equipment</h1>
+    <!-- DISPLAYING EQUIPMENT STATS -->
+    <div id="display-equipment">
       <% for(let e of equipment) { %>
-      <details>
-        <summary>
-          <strong><%= e['item'] %> ::</strong>
-          <span><%= e['hero'] %></span>
-        </summary>
-        <ul>
-          <strong><%= e['lore'] %></strong>
-          <li>Wit: <%= e['wit'] %></li>
-          <li>Strength: <%= e['strength'] %></li>
-          <li>Attack: <%= e['attack'] %></li>
-          <li>Defense: <%= e['defense'] %></li>
-          <li>Magic: <%= e['magic'] %></li>
-        </ul>
-        <form action="/sql/equipment/remove_equipment" method="post">
-          <input type="hidden" name="equipment_id" value=<%= e['id'] %> />
-          <button type="submit">Remove Item</button>
-        </form>
-      </details>
-      <% } %>
-      <h3 style="margin-bottom: 0">Create Equipment</h3>
-      <details style="margin-top: 0">
-        <summary></summary>
-        <form action="/sql/equipment/add_equipment" method="post">
-          <label for="item_name">Item Name: </label>
-          <input type="text" id="item_name" name="item_name" /><br />
+        <details>
+          <summary>
+            <strong>
+              <%= e['item'] %>
+            </strong>
+          </summary>
+          <fieldset id="stats-display">
+            <legend>
+              <%= e['lore'] %>
+            </legend>
+            <ul>
+              <li>Wit: <%= e['wit'] %>
+              </li>
+              <li>Strength: <%= e['strength'] %>
+              </li>
+              <li>Attack: <%= e['attack'] %>
+              </li>
+              <li>Defense: <%= e['defense'] %>
+              </li>
+              <li>Magic: <%= e['magic'] %>
+              </li>
+            </ul>
+          </fieldset>
 
-          <label for="lore">Lore: </label>
-          <input type="text" id="lore" name="lore" />
+          <!-- ASSIGN EQUIPMENT TO HERO -->
+          <form action="/sql/equipment/assign_equipment" method="post">
+            <fieldset>
+              <legend>Assign Equipment to a Hero</legend>
+              <% for(let h of heros) { %>
+                <div>
+                  <input type="radio" id=<%=h.toString() %> name="hero_id" value=<%= h['c_id'] %> />
+                    <label for=<%=h.toString() %>><%= h['c_name'] %></label>
+                </div>
+                <% } %>
+                  <button type="submit" class="assign-button">Assign Item</button>
+            </fieldset>
+            <input type="hidden" name="equipment_id" value=<%=e['id'] %> />
+          </form>
 
-          <label for="wit_modifier">Wit Modifier: </label>
-          <input type="number" id="wit_modifier" name="wit_modifier" /><br />
+          <!-- REMOVE EQUIPMENT -->
+          <form action="/sql/equipment/remove_equipment" method="post">
+            <input type="hidden" name="equipment_id" value=<%=e['id'] %> />
+            <button type="submit" class="remove-button">Remove Item</button>
+          </form>
 
-          <label for="strength_modifier">Strength Modifier: </label>
-          <input
-            type="number"
-            id="strength_modifier"
-            name="strength_modifier"
-          /><br />
-
-          <label for="attack_modifier">Attack Modifier: </label>
-          <input
-            type="number"
-            id="attack_modifier"
-            name="attack_modifier"
-          /><br />
-
-          <label for="defense_modifier">Defense Modifier: </label>
-          <input
-            type="number"
-            id="defense_modifier"
-            name="defense_modifier"
-          /><br />
-
-          <label for="magic_modifier">Magic Modifier: </label>
-          <input
-            type="number"
-            id="magic_modifier"
-            name="magic_modifier"
-          /><br />
-
-          <button type="submit">Add item</button>
-        </form>
-      </details>
+        </details>
+        <% } %>
     </div>
-  </body>
+
+    <div id="create-equipment">
+      <!--  CREATING NEW EQUIPMENT -->
+      <h3>Create Equipment</h3>
+      <!-- <details style="margin-top: 0">
+          <summary></summary> -->
+      <form action="/sql/equipment/add_equipment" method="post">
+        <label for="item_name">Item Name: </label>
+        <input type="text" id="item_name" name="item_name" /><br />
+
+        <label for="lore">Lore: </label>
+        <input type="text" id="lore" name="lore" />
+
+        <label for="wit_modifier">Wit Modifier: </label>
+        <input type="number" id="wit_modifier" name="wit_modifier" /><br />
+
+        <label for="strength_modifier">Strength Modifier: </label>
+        <input type="number" id="strength_modifier" name="strength_modifier" /><br />
+
+        <label for="attack_modifier">Attack Modifier: </label>
+        <input type="number" id="attack_modifier" name="attack_modifier" /><br />
+
+        <label for="defense_modifier">Defense Modifier: </label>
+        <input type="number" id="defense_modifier" name="defense_modifier" /><br />
+
+        <label for="magic_modifier">Magic Modifier: </label>
+        <input type="number" id="magic_modifier" name="magic_modifier" /><br />
+
+        <button type="submit">Add item</button>
+      </form>
+      <!-- </details> -->
+    </div>
+
+    <a href="/sql">BACK</a>
+  </div>
+</body>
+
 </html>
