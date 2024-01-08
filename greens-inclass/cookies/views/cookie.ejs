@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookies</title>
+</head>
+
+<body>
+    <main>
+        <h1>
+            <h3 id="cookie-display"></h3>
+            <h3>
+                You have been here: <span id="visit-display" style="color: red;"></span> times
+            </h3>
+
+        </h1>
+    </main>
+    <script>
+        const cookie_array = document.cookie.split('; ');
+        const visit_cookie = cookie_array.find((elem) => { return elem.startsWith('visit_count='); });
+        document.getElementById('visit-display').innerHTML = visit_cookie.slice(12, 14);
+
+    </script>
+</body>
+
+</html>

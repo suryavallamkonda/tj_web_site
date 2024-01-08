@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+
+    <h3>Eggs</h3>
+    <p id='eggs'></p>
+    <h3>Onions</h3>
+    <p id='onions'></p>
+    <h3>Garlic</h3>
+    <p id='garlic'></p>
+    <button type="button" onclick="doTheFetch()">PRESS ME</button>
+
+
+
+    <script>
+        async function doTheFetch() {
+            const response = await fetch('http://127.0.0.1/kitchen')
+            const data = await response.json()
+            let counter_span_eggs = document.getElementById("eggs")
+            let counter_span_onions = document.getElementById("onions")
+            let counter_span_garlic = document.getElementById("garlic")
+            counter_span_eggs.innerHTML = data.eggs;
+            counter_span_onions.innerHTML = data.onions;
+            counter_span_garlic.innerHTML = data.garlic;
+
+        }    
+    </script>
+</body>
+
+</html>
