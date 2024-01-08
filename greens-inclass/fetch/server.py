@@ -8,9 +8,10 @@ def hello_world():
 @app.route("/kitchen")
 def kitchen_ops():
     kitchen  = {
-	  "eggs": 20,
-	  "onions": 3,
-	  "garlic": 50
+	  "eggs": '100 eggs',
+	  "onions": '1',
+	  "garlic": 1,
+      "ginger": 1
 	}
     return jsonify(kitchen)
 
