@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+
+    <h3>Upvotes</h3>
+    <p id='upvotes'></p>
+    <button type="button" onclick="doTheFetch('upvote')">PRESS ME</button>
+
+    <h3>Downvotes</h3>
+    <p id='downvotes'></p>
+    <button type="button" onclick="doTheFetch('downvote')">PRESS ME</button>
+
+
+
+    <script>
+        async function doTheFetch(x) {
+            const response = await fetch(`http://127.0.0.1/${x}`)
+            const data = await response.json()
+            let counter_span = document.getElementById(x)
+            counter_span.innerHTML = data.x;
+
+        }    
+    </script>
+</body>
+
+</html>

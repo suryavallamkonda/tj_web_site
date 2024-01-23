@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/wordle.css" />
+    <title>solve the word</title>
+</head>
+
+<body>
+    <form>
+        <div>
+            <input type="text" id="letter1" maxlength="1" oninput="updateGuess()">
+            <input type="radio" name="colors1" onclick="setColor('letter1', 'Green')">Green</input>
+            <input type="radio" name="colors1" onclick="setColor('letter1', 'Yellow')">Yellow</input>
+            <input type="radio" name="colors1" onclick="setColor('letter1', 'Grey')">Grey</input>
+        </div>
+
+        <div>
+            <input type="text" id="letter2" maxlength="1" oninput="updateGuess()">
+            <input type="radio" name="colors2" onclick="setColor('letter2', 'Green')">Green</input>
+            <input type="radio" name="colors2" onclick="setColor('letter2', 'Yellow')">Yellow</input>
+            <input type="radio" name="colors2" onclick="setColor('letter2', 'Grey')">Grey</input>
+        </div>
+
+        <div>
+            <input type="text" id="letter3" maxlength="1" oninput="updateGuess()">
+            <input type="radio" name="colors3" onclick="setColor('letter3', 'Green')">Green</input>
+            <input type="radio" name="colors3" onclick="setColor('letter3', 'Yellow')">Yellow</input>
+            <input type="radio" name="colors3" onclick="setColor('letter3', 'Grey')">Grey</input>
+        </div>
+
+        <div>
+            <input type="text" id="letter4" maxlength="1" oninput="updateGuess()">
+            <input type="radio" name="colors4" onclick="setColor('letter4', 'Green')">Green</input>
+            <input type="radio" name="colors4" onclick="setColor('letter4', 'Yellow')">Yellow</input>
+            <input type="radio" name="colors4" onclick="setColor('letter4', 'Grey')">Grey</input>
+        </div>
+
+        <div>
+            <input type="text" id="letter5" maxlength="1" oninput="updateGuess()">
+            <input type="radio" name="colors5" onclick="setColor('letter5', 'Green')">Green</input>
+            <input type="radio" name="colors5" onclick="setColor('letter5', 'Yellow')">Yellow</input>
+            <input type="radio" name="colors5" onclick="setColor('letter5', 'Grey')">Grey</input>
+        </div>
+    </form>
+
+    <script>
+        function updateGuess() {
+            const guessData = [];
+            let allInputsFilled = true;
+
+            for (let i = 1; i <= 5; i++) {
+                const letterInput = document.getElementById(`letter${i}`);
+                const letter = letterInput.value.toUpperCase();
+                const color = letterInput.dataset.color || '';
+
+                guessData.push({ letter, color });
+
+                if (!letter || color == '') {
+                    allInputsFilled = false;
+                    console.log(i + " not filled")
+                }
+            }
+
+            if (allInputsFilled) {
+                fetch('/wordfinder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(guessData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the server's response
+                        console.log(data);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+        function setColor(letterId, color) {
+            const letterInput = document.getElementById(letterId);
+            letterInput.dataset.color = color;
+            letterInput.style.backgroundColor = color.toLowerCase();
+            updateGuess()
+        }
+    </script>
+</body>
+
+</html>
