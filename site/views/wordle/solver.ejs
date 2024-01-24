@@ -47,18 +47,13 @@
         </div>
     </form>
     <script>
-
-        function makeURL() {
-
-        }
-
         async function updateGuess() {
             const guessData = {};
             let allInputsFilled = true;
             for (let i = 1; i <= 5; i++) {
                 const letterInput = document.getElementById(`letter${i}`);
                 const letter = letterInput.value.toUpperCase();
-                const color = letterInput.dataset.color || '';
+                const color = letterInput.dataset.color.toLowerCase() || '';
 
                 guessData[`letter${i}`] = { letter, color };
 
@@ -72,9 +67,9 @@
                 url = 'http://127.0.0.1:8080/wordfinder'
                 alert('got here')
                 let response = await fetch(url, {
-                    method: "GET",
+                    method: "POST",
                     headers: { 'Content-Type': 'application/json', },
-                    body: JSON.stringify({ from: 'tester.testing', to: 'result.resulting' })
+                    body: JSON.stringify(guessData)
                 })
                 let data = await response.json()
                 alert(JSON.stringify(data))
