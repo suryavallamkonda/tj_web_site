@@ -10,6 +10,9 @@ app.use(
   })
 );
 
+let pokedex = require("./routes/pokedex");
+app.use(pokedex);
+
 function sqlPromise(query, params = []) {
   return new Promise((resolve, reject) => {
     const fn = query.split(" ")[0].toUpperCase() === "SELECT" ? "all" : "run";
@@ -73,6 +76,10 @@ app.post("/add_pokemon", async (req, res) => {
     results: results,
   };
   res.redirect("/");
+});
+
+app.post("/pokedex", (req, res) => {
+  res.render("pokedex");
 });
 
 const listener = app.listen(

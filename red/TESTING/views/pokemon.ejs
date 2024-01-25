@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pokemon.name %> - Database Entry</title>
+</head>
+<body>
+    <h1 id="pokename"><%= pokemon.name %></h1>
+    <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %>">
+    <h2>Height: <%= pokemon.height %></h2>
+    <h2>Weight: <%= pokemon.weight %></h2>
+    <h2>Types:</h2>
+    <p>
+        <% for(let i = 0; i < pokemon.types.length; i++) { %>
+            <p><%= pokemon.types[i].type.name.replace(/[^a-zA-Z0-9]/g, '') %></p>
+            <% console.log(pokemon.types[i].type.name) %>
+        <% } %>
+    </p>
+    <script>
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        let pokename = document.getElementById("pokename");
+        pokename.innerHTML = capitalizeFirstLetter(pokename.innerHTML);
+    </script>
+</body>
+</html>

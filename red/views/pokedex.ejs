@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+</head>
+<body>
+    <div>
+        <div id="imageContainer"></div>
+
+    </div>
+    <script>
+        // Array of image file names
+        var imageFiles = ["image1.png", "image2.png", "image3.png"];
+
+        // Get the container element
+        var container = document.getElementById("imageContainer");
+
+        // Loop through the image files
+        for (var i = 0; i < imageFiles.length; i++) {
+            // Create an image element
+            var image = document.createElement("img");
+
+            // Set the source attribute to the image file path
+            image.src = "path/to/images/" + imageFiles[i];
+
+            // Append the image element to the container
+            container.appendChild(image);
+        }
+    </script>
+</body>
+</html>

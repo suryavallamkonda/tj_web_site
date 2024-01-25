@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Database Entries</title>
+</head>
+<body>
+    <h1>Pokédex</h1>
+
+    <div id="pokemon-container">
+    </div>
+
+    <button onclick="getEntries((document.getElementById('pokemon-container').childElementCount/30)+1)">Get Entries</button>
+
+
+    <script>
+        window.onload = getEntries(1);
+        const pokemonContainer = document.getElementById('pokemon-container');
+        async function getEntries(num){
+            url = 'http://localhost:8080/api/data';
+            let response = await fetch(url, {
+                method: "POST",
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify({entries: num})
+            })
+            let data = await response.json();
+            let entry_bundle =  data.response;
+            entry_bundle.forEach(entry => {
+                let entryDiv = document.createElement('div');
+                entryDiv.innerHTML = `
+                    <h2>${entry.name.charAt(0).toUpperCase() + entry.name.slice(1)}</h2>
+                    <img src=${entry.sprites.front_default} alt=${entry.name}>
+                `;
+                pokemonContainer.appendChild(entryDiv);
+            });
+        }
+    </script>
+</body>
+
+</html>
