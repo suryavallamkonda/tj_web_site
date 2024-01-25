@@ -5,54 +5,117 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/css/wordle.css" /> -->
+    <link rel="stylesheet" href="/css/wordle.css" />
     <title>solve the word</title>
 </head>
 
 <body>
-    <form>
-        <div>
-            <input type="text" id="letter1" maxlength="1" oninput="updateGuess()">
-            <input type="radio" name="colors1" onclick="setColor('letter1', 'Green')">Green</input>
-            <input type="radio" name="colors1" onclick="setColor('letter1', 'Yellow')">Yellow</input>
-            <input type="radio" name="colors1" onclick="setColor('letter1', 'Grey')">Grey</input>
+    <div id="root">
+        <form id="grid">
+            <div id="input1" class="input">
+                <input type="text" id="letter1" maxlength="1" oninput="updateGuess()">
+                <div class="color-controls">
+                    <label>
+                        <input type="radio" name="colors1" autocomplete="off" onclick="setColor('letter1', 'Green')">
+                        Green
+                    </label>
+                    <label>
+                        <input type="radio" name="colors1" autocomplete="off" onclick="setColor('letter1', 'Yellow')">
+                        Yellow
+                    </label>
+                    <label>
+                        <input type="radio" name="colors1" autocomplete="off" onclick="setColor('letter1', 'Grey')">
+                        Grey
+                    </label>
+                </div>
+            </div>
+    
+            <div id="input2" class="input">
+                <input type="text" id="letter2" maxlength="1" oninput="updateGuess()">
+                <div class="color-controls">
+                    <label>
+                        <input type="radio" name="colors2" autocomplete="off" onclick="setColor('letter2', 'Green')">
+                        Green
+                    </label>
+                    <label>
+                        <input type="radio" name="colors2" autocomplete="off" onclick="setColor('letter2', 'Yellow')">
+                        Yellow
+                    </label>
+                    <label>
+                        <input type="radio" name="colors2" autocomplete="off" onclick="setColor('letter2', 'Grey')">
+                        Grey
+                    </label>
+                </div>
+            </div>
+    
+            <div id="input3" class="input">
+                <input type="text" id="letter3" maxlength="1" oninput="updateGuess()">
+                <div class="color-controls">
+                    <label>
+                        <input type="radio" name="colors3" autocomplete="off" onclick="setColor('letter3', 'Green')">
+                        Green
+                    </label>
+                    <label>
+                        <input type="radio" name="colors3" autocomplete="off" onclick="setColor('letter3', 'Yellow')">
+                        Yellow
+                    </label>
+                    <label>
+                        <input type="radio" name="colors3" autocomplete="off" onclick="setColor('letter3', 'Grey')">
+                        Grey
+                    </label>
+                </div>
+            </div>
+    
+            <div id="input4" class="input">
+                <input type="text" id="letter4" maxlength="1" oninput="updateGuess()">
+                <div class="color-controls">
+                    <label>
+                        <input type="radio" name="colors4" autocomplete="off" onclick="setColor('letter4', 'Green')">
+                        Green
+                    </label>
+                    <label>
+                        <input type="radio" name="colors4" autocomplete="off" onclick="setColor('letter4', 'Yellow')">
+                        Yellow
+                    </label>
+                    <label>
+                        <input type="radio" name="colors4" autocomplete="off" onclick="setColor('letter4', 'Grey')">
+                        Grey
+                    </label>
+                </div>
+            </div>
+    
+            <div id="input5" class="input">
+                <input type="text" id="letter5" maxlength="1" oninput="updateGuess()">
+                <div class="color-controls">
+                    <label>
+                        <input type="radio" name="colors5" autocomplete="off" onclick="setColor('letter5', 'Green')">
+                        Green
+                    </label>
+                    <label>
+                        <input type="radio" name="colors5" autocomplete="off" onclick="setColor('letter5', 'Yellow')">
+                        Yellow
+                    </label>
+                    <label>
+                        <input type="radio" name="colors5" autocomplete="off" onclick="setColor('letter5', 'Grey')">
+                        Grey
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div id="guess">
+            <h2 id="title">Guesses</h2>
+            <div id="words">
+            </div>
         </div>
+    </div>
 
-        <div>
-            <input type="text" id="letter2" maxlength="1" oninput="updateGuess()">
-            <input type="radio" name="colors2" onclick="setColor('letter2', 'Green')">Green</input>
-            <input type="radio" name="colors2" onclick="setColor('letter2', 'Yellow')">Yellow</input>
-            <input type="radio" name="colors2" onclick="setColor('letter2', 'Grey')">Grey</input>
-        </div>
-
-        <div>
-            <input type="text" id="letter3" maxlength="1" oninput="updateGuess()">
-            <input type="radio" name="colors3" onclick="setColor('letter3', 'Green')">Green</input>
-            <input type="radio" name="colors3" onclick="setColor('letter3', 'Yellow')">Yellow</input>
-            <input type="radio" name="colors3" onclick="setColor('letter3', 'Grey')">Grey</input>
-        </div>
-
-        <div>
-            <input type="text" id="letter4" maxlength="1" oninput="updateGuess()">
-            <input type="radio" name="colors4" onclick="setColor('letter4', 'Green')">Green</input>
-            <input type="radio" name="colors4" onclick="setColor('letter4', 'Yellow')">Yellow</input>
-            <input type="radio" name="colors4" onclick="setColor('letter4', 'Grey')">Grey</input>
-        </div>
-
-        <div>
-            <input type="text" id="letter5" maxlength="1" oninput="updateGuess()">
-            <input type="radio" name="colors5" onclick="setColor('letter5', 'Green')">Green</input>
-            <input type="radio" name="colors5" onclick="setColor('letter5', 'Yellow')">Yellow</input>
-            <input type="radio" name="colors5" onclick="setColor('letter5', 'Grey')">Grey</input>
-        </div>
-    </form>
     <script>
         async function updateGuess() {
             const guessData = {};
             let allInputsFilled = true;
             for (let i = 1; i <= 5; i++) {
                 const letterInput = document.getElementById(`letter${i}`);
-                const letter = letterInput.value.toUpperCase();
+                const letter = letterInput.value.toLowerCase();
                 const color = letterInput.dataset.color.toLowerCase() || '';
 
                 guessData[`letter${i}`] = { letter, color };
@@ -65,14 +128,23 @@
 
             if (allInputsFilled) {
                 url = 'http://127.0.0.1:8080/wordfinder'
-                alert('got here')
                 let response = await fetch(url, {
                     method: "POST",
                     headers: { 'Content-Type': 'application/json', },
                     body: JSON.stringify(guessData)
                 })
                 let data = await response.json()
-                alert(JSON.stringify(data))
+                console.log(data.response);
+
+                const guessDiv = document.getElementById('words');
+                guessDiv.innerHTML = '';
+                data.response.forEach(guess => {
+                    const guessElement = document.createElement('p');
+                    guessElement.textContent = guess;
+                    guessElement.style.width = 'fit-content'
+                    guessElement.style.padding = '0.5rem'   
+                    guessDiv.appendChild(guessElement);
+                });
 
             }
         }
